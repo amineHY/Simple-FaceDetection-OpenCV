@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import time
 import imutils
-
+import datetime
 
 #####################################################################
 print("\n[INFO] Load pre-trained Caffe model\n")
@@ -53,7 +53,7 @@ movementText = "Motion detected"
 textColor = (255, 255, 255)
 titleTextPosition = (50, 50)
 titleTextSize = 1.2
-motionTextPosition = (20,20)
+motionTextPosition = (20, 20)
 frameIdx = 0
 
 
@@ -154,6 +154,12 @@ while(1):
 
     # Display Results
     #####################################################################
+        timestamp = datetime.datetime.now()
+
+        cv2.putText(frame, timestamp.strftime("%A %d %B %Y %I:%M:%S%p"),
+                    (20, frame_height-20),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 1)
+
     cv2.imshow('Face Detection ({} x {})'.format(
         frame_height, frame_width), frame)
     cv2.imshow('Movement: KNN', knnMask)
