@@ -44,6 +44,8 @@ while True:  # loop over the frames from the video stream
 
     # pass the blob through the network and obtain the detections and
     # predictions
+    tic = time.time()
+
     net.setInput(blob)
     detections = net.forward()
 
@@ -67,6 +69,8 @@ while True:  # loop over the frames from the video stream
                       (0, 255, 0), 2)
         cv2.putText(frame, text, (startX, y),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 2)
+    toc = time.time()
+    print("time %f ms"%((toc-tic)*1000))
 
     # show the output frame
     cv2.imshow("Frame", frame)
